@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eric Melparambil</title>
+  <meta name="description" content="Eric Melparambil. Computer science student at TU Dublin seeking quant trading roles, with intraday strategies running on paper.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500&family=Hanken+Grotesk:wght@200;300;400;500&family=IBM+Plex+Mono:wght@400&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="mediaaqueries.css">
+</head>
+<body>
+  <nav class="site-nav" aria-label="Main">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="./assets/CV%20of%20Eric%20Melparambil.pdf" target="_blank" rel="noopener">CV</a>
+  </nav>
+
+  <header class="hero">
+    <img class="hero__image" src="./assets/Images/bw/hero-chess.jpg" alt="Eric Melparambil in a black embroidered jacket, sitting on a giant fallen chess king against a black background" width="1860" height="846" fetchpriority="high">
+    <h1 class="hero__name">Eric Melparambil</h1>
+    <blockquote class="hero__quote">
+      <p><span>In life, there are</span> <span>winners and</span> <em>losers.</em></p>
+      <footer>&mdash; Eric Melparambil</footer>
+    </blockquote>
+  </header>
+
+  <main>
+    <section id="work" class="work">
+      <div class="work__intro">
+        <h2>Work</h2>
+        <p>Two strategies with their backtest results, both now running on paper through Astral, and the forecaster where it started.</p>
+      </div>
+
+      <article class="project">
+        <div class="project__body">
+          <p class="project__index">01 &middot; Trading strategy &middot; AAPL, 1-minute bars</p>
+          <h3>1-Min Trend Pullback Scalper</h3>
+          <p>A simplified version of my Python scalping bot, running beside the research code as a short-term dip buyer. Neither version is validated as profitable yet.</p>
+          <ul class="project__rules">
+            <li><span>Entry</span> RSI(2) below 20</li>
+            <li><span>Exit</span> RSI(2) above 65, or 15:55 flatten rule</li>
+            <li><span>Risk</span> 0.25% stop, 0.5% target</li>
+          </ul>
+          <div class="project__links">
+            <a class="link-primary" href="https://heyastral.ai/explore/strategy/1-min-trend-pullback-scalper-astral-simp-8ede9fd2" target="_blank" rel="noopener">Live feed on Astral <span aria-hidden="true">&#8599;</span></a>
+            <a href="https://github.com/Eric-saj22/stock-scalping-bot" target="_blank" rel="noopener">GitHub <span aria-hidden="true">&#8599;</span></a>
+          </div>
+        </div>
+        <div class="project__data">
+          <figure class="equity" data-series="aapl">
+            <figcaption>Backtest equity, session closes, indexed to $10,000</figcaption>
+            <div class="equity__plot"></div>
+          </figure>
+          <dl class="stats">
+            <div><dt>Return</dt><dd>&minus;6.25%</dd></div>
+            <div><dt>Max drawdown</dt><dd>&minus;9.02%</dd></div>
+            <div><dt>Sharpe</dt><dd>&minus;3.72</dd></div>
+            <div><dt>Trades</dt><dd>1,104</dd></div>
+          </dl>
+          <p class="note">Backtest from 3 Aug to 22 Sep 2026, with no commissions or slippage modelled. Live paper results are on Astral.</p>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project__body">
+          <p class="project__index">02 &middot; RSI strategy &middot; META, 5-minute bars</p>
+          <h3>RSI-2 Swing Scalp, Variant A</h3>
+          <p>Fewer, bigger trades on extreme readings.</p>
+          <ul class="project__rules">
+            <li><span>Entry</span> RSI(2) below 10</li>
+            <li><span>Exit</span> RSI(2) above 90, or 15:55 flatten rule</li>
+            <li><span>Risk</span> 0.5% stop, 1.0% target</li>
+          </ul>
+          <div class="project__links">
+            <a class="link-primary" href="https://heyastral.ai/explore/strategy/meta-rsi-2-swing-scalp-5m-a-extreme-d4567e25" target="_blank" rel="noopener">Live feed on Astral <span aria-hidden="true">&#8599;</span></a>
+          </div>
+        </div>
+        <div class="project__data">
+          <figure class="equity" data-series="meta">
+            <figcaption>Backtest equity, session closes, indexed to $10,000</figcaption>
+            <div class="equity__plot"></div>
+          </figure>
+          <dl class="stats">
+            <div><dt>Return</dt><dd>+12.16%</dd></div>
+            <div><dt>Max drawdown</dt><dd>&minus;7.51%</dd></div>
+            <div><dt>Sharpe</dt><dd>2.55</dd></div>
+            <div><dt>Trades</dt><dd>246</dd></div>
+          </dl>
+          <p class="note">Backtest from 9 Jul to 9 Oct 2026, with no commissions or slippage modelled. Live paper results are on Astral.</p>
+        </div>
+      </article>
+
+      <article class="project project--text">
+        <div class="project__body">
+          <p class="project__index">03 &middot; Python &middot; Where it started</p>
+          <h3>Stock Price Forecaster</h3>
+          <p>A simple early Streamlit app that fits an ARIMA model to daily closes since 2015 and plots a forecast one to four years ahead. Point forecasts only, with no out-of-sample evaluation.</p>
+          <div class="project__links">
+            <a class="link-primary" href="https://github.com/Eric-saj22/Stock-Analyser-and-Prediction-" target="_blank" rel="noopener">GitHub <span aria-hidden="true">&#8599;</span></a>
+          </div>
+        </div>
+        <ul class="project__rules project__rules--stack">
+          <li><span>Stack</span> Python, pandas, pmdarima, Streamlit</li>
+          <li><span>Data</span> yfinance daily closes</li>
+          <li><span>Tickers</span> AAPL, SAP.DE, NVDA, GME</li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="about" class="about">
+      <img class="about__portrait" src="./assets/Images/bw/about.jpg" alt="Black and white portrait of Eric in a black embroidered jacket, looking to the side" width="1200" height="1400" loading="lazy">
+      <div class="about__text">
+        <h2>About</h2>
+        <p class="about__lead">I study computer science at TU Dublin and test intraday strategies in the open.</p>
+        <p>Each one starts as written rules, gets a backtest, then runs on paper so I can compare what the backtest promised with what the market delivered.</p>
+        <dl class="facts">
+          <div><dt>Education</dt><dd>B.S. Computer Science International, Technological University Dublin, expected May 2027</dd></div>
+          <div><dt>CFA</dt><dd>Level I candidate, exam February 2027</dd></div>
+          <div><dt>Experience</dt><dd>Sales Assistant, Currys, since September 2024</dd></div>
+          <div><dt>Languages</dt><dd>Python, SQL, C, JavaScript</dd></div>
+          <div><dt>Tools</dt><dd>pandas, PostgreSQL, Node.js, Git, Astral</dd></div>
+          <div><dt>Looking for</dt><dd>Quant trading roles</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <div class="contact__text">
+        <h2>Contact</h2>
+        <a class="contact__email" href="mailto:ericsaju22@gmail.com">ericsaju22@gmail.com</a>
+        <div class="project__links">
+          <a href="https://www.linkedin.com/in/eric-saju-177240256/" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">&#8599;</span></a>
+          <a href="https://github.com/Eric-saj22" target="_blank" rel="noopener">GitHub <span aria-hidden="true">&#8599;</span></a>
+          <a href="./assets/CV%20of%20Eric%20Melparambil.pdf" target="_blank" rel="noopener">CV <span aria-hidden="true">&#8599;</span></a>
+        </div>
+      </div>
+      <img class="contact__portrait" src="./assets/Images/bw/headshot.jpg" alt="Black and white headshot of Eric smiling, in a light blazer and white shirt" width="1000" height="1200" loading="lazy">
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Results shown are simulated backtests that exclude trading costs, not real-money returns. Live paper results are on Astral. Nothing here is investment advice.</p>
+    <p>&copy; 2026 Eric Melparambil</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

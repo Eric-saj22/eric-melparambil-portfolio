@@ -1,0 +1,11 @@
+# Only publish the files the site uses.
+assets/*
+!assets/CV of Eric Melparambil.pdf
+!assets/Images/
+assets/Images/*
+!assets/Images/bw/
+assets/Images/bw/*
+!assets/Images/bw/about.jpg
+!assets/Images/bw/headshot.jpg
+!assets/Images/bw/hero-chess.jpg
+styles.css
