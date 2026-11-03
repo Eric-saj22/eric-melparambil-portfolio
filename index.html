@@ -32,14 +32,104 @@
     <section id="work" class="work">
       <div class="work__intro">
         <h2>Work</h2>
-        <p>Two strategies with their backtest results, both now running on paper through Astral, and the forecaster where it started.</p>
+        <p>How my strategies developed, in order: what each one does, how it performed, and why I moved on. The forecaster where it all started is at the end.</p>
       </div>
 
       <article class="project">
         <div class="project__body">
-          <p class="project__index">01 &middot; Trading strategy &middot; AAPL, 1-minute bars</p>
+          <p class="project__index">01 &middot; First version &middot; QQQ, 1-hour bars</p>
+          <h3>QQQ High-Win-Rate Micro-Scalp</h3>
+          <p>Buys extreme short-term dips while price is above its 50-period average, then takes a small, quick profit so that most trades win. The stop is twice the size of the target, so the win rate has to stay high.</p>
+          <p class="project__step"><span>Why I moved on</span>I wanted to run the idea under FTMO&rsquo;s rules, and FTMO doesn&rsquo;t offer QQQ or options. So I rebuilt it on SPY as an S&amp;P 500 proxy.</p>
+          <ul class="project__rules">
+            <li><span>Entry</span> RSI(5) below 15, price above SMA(50)</li>
+            <li><span>Exit</span> RSI(5) above 50</li>
+            <li><span>Risk</span> 1 ATR stop, 0.5 ATR target</li>
+          </ul>
+          <div class="project__links">
+            <a class="link-primary" href="https://heyastral.ai/explore/strategy/qqq-high-win-rate-micro-scalp-strategy-d987377b" target="_blank" rel="noopener">View on Astral <span aria-hidden="true">&#8599;</span></a>
+          </div>
+        </div>
+        <div class="project__data">
+          <figure class="equity" data-series="qqq">
+            <figcaption>Backtest equity, sampled about monthly, indexed to $10,000</figcaption>
+            <div class="equity__plot"></div>
+          </figure>
+          <dl class="stats">
+            <div><dt>Return</dt><dd>+1.47%</dd></div>
+            <div><dt>Max drawdown</dt><dd>&minus;0.07%</dd></div>
+            <div><dt>Sharpe</dt><dd>0.94</dd></div>
+            <div><dt>Trades</dt><dd>10</dd></div>
+          </dl>
+          <p class="note">Backtest from 29 Dec 2023 to 10 Sep 2026, with no commissions or slippage modelled. 60% win rate on only 10 trades.</p>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project__body">
+          <p class="project__index">02 &middot; FTMO rebuild &middot; SPY, 5-minute bars</p>
+          <h3>SPY RSI-2 Mean Reversion Micro-Scalp</h3>
+          <p>The same idea moved to SPY and faster bars: buy short-term oversold dips only while the 50-period average is above the 200-period average, and exit once momentum reverts. A hard stop caps the trades that don&rsquo;t revert.</p>
+          <ul class="project__rules">
+            <li><span>Entry</span> RSI(2) below 10, SMA(50) above SMA(200)</li>
+            <li><span>Exit</span> RSI(2) above 65</li>
+            <li><span>Risk</span> 0.6% stop</li>
+          </ul>
+        </div>
+        <div class="project__data">
+          <figure class="equity" data-series="spy">
+            <figcaption>Backtest equity, session closes, indexed to $10,000</figcaption>
+            <div class="equity__plot"></div>
+          </figure>
+          <dl class="stats">
+            <div><dt>Return</dt><dd>+1.26%</dd></div>
+            <div><dt>Max drawdown</dt><dd>&minus;1.33%</dd></div>
+            <div><dt>Sharpe</dt><dd>1.35</dd></div>
+            <div><dt>Trades</dt><dd>92</dd></div>
+          </dl>
+          <p class="note">Backtest from 18 Jun to 11 Sep 2026, with no commissions or slippage modelled. 63% win rate.</p>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project__body">
+          <p class="project__index">03 &middot; Refinement &middot; SPY, 5-minute bars</p>
+          <h3>SPY RSI-2 Micro-Scalp, Version 3</h3>
+          <p class="project__step"><span>What I changed</span>I loosened the entry from RSI(2) below 10 to below 15 and took profit sooner, at RSI(2) above 60 instead of 65. Trades rose from 92 to 138 and Sharpe from 1.35 to 1.80, with a slightly deeper drawdown.</p>
+          <p class="project__step"><span>Why I used it</span>Frequent small wins with a hard stop keep drawdowns small, which matters under a prop firm&rsquo;s loss limits.</p>
+          <p class="project__step"><span>Why I moved on</span>138 trades in 12 weeks still wasn&rsquo;t enough, so I moved to a 1-minute scalper to trade far more often.</p>
+          <ul class="project__rules">
+            <li><span>Entry</span> RSI(2) below 15, SMA(50) above SMA(200)</li>
+            <li><span>Exit</span> RSI(2) above 60</li>
+            <li><span>Risk</span> 0.6% stop</li>
+          </ul>
+          <div class="project__links">
+            <a class="link-primary" href="https://heyastral.ai/explore/strategy/spy-high-win-rate-micro-scalp-rsi-2-mean-1494d73f" target="_blank" rel="noopener">View on Astral <span aria-hidden="true">&#8599;</span></a>
+          </div>
+        </div>
+        <div class="project__data">
+          <figure class="equity" data-series="spyv3">
+            <figcaption>Backtest equity, session closes, indexed to $10,000</figcaption>
+            <div class="equity__plot"></div>
+          </figure>
+          <dl class="stats">
+            <div><dt>Return</dt><dd>+1.84%</dd></div>
+            <div><dt>Max drawdown</dt><dd>&minus;1.65%</dd></div>
+            <div><dt>Sharpe</dt><dd>1.80</dd></div>
+            <div><dt>Trades</dt><dd>138</dd></div>
+          </dl>
+          <p class="note">Backtest from 18 Jun to 11 Sep 2026, with no commissions or slippage modelled. 64.5% win rate. Tested on the same window as the previous version, so the improvement is in-sample.</p>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project__body">
+          <p class="project__index">04 &middot; Trading strategy &middot; AAPL, 1-minute bars</p>
           <h3>1-Min Trend Pullback Scalper</h3>
-          <p>A simplified version of my Python scalping bot, running beside the research code as a short-term dip buyer. Neither version is validated as profitable yet.</p>
+          <p>Inspired by a day-trading momentum strategy and built as an addition to the micro-scalp approach, with more focus on market direction: reading whether the market was bullish or bearish from the previous week and the 4-hour chart. This Astral version is a simplified, long-only copy of my Python scalping bot that leaves out the trend filter. Neither version is validated as profitable yet.</p>
+          <p class="project__step"><span>Why I chose it</span>I needed much higher trade frequency. Moving to 1-minute bars delivered 587 round trips in under six weeks of paper trading.</p>
+          <p class="project__step"><span>What it showed</span>The backtest lost money even before costs. The later paper run was profitable, returning +0.79% on a $10,000 account, but the paper account charges no trading costs. Hypothetically, with no trip-ups, meaning nothing held overnight and every stop and target filled at its set level, it would have returned +1.59%. In a real funded account, trading costs and slippage would have wiped that out: at 1 basis point per side, it becomes a loss of about 9.7%.</p>
+          <p class="project__step"><span>Why I moved on</span>I moved to 5-minute bars: fewer trades and a bigger target on each, so costs take a smaller share of every trade.</p>
           <ul class="project__rules">
             <li><span>Entry</span> RSI(2) below 20</li>
             <li><span>Exit</span> RSI(2) above 65, or 15:55 flatten rule</li>
@@ -51,25 +141,36 @@
           </div>
         </div>
         <div class="project__data">
-          <figure class="equity" data-series="aapl">
-            <figcaption>Backtest equity, session closes, indexed to $10,000</figcaption>
-            <div class="equity__plot"></div>
-          </figure>
-          <dl class="stats">
-            <div><dt>Return</dt><dd>&minus;6.25%</dd></div>
-            <div><dt>Max drawdown</dt><dd>&minus;9.02%</dd></div>
-            <div><dt>Sharpe</dt><dd>&minus;3.72</dd></div>
-            <div><dt>Trades</dt><dd>1,104</dd></div>
-          </dl>
-          <p class="note">Backtest from 3 Aug to 22 Sep 2026, with no commissions or slippage modelled. Live paper results are on Astral.</p>
+          <div class="compare-charts">
+            <figure class="equity" data-series="aaplBacktest">
+              <figcaption>Backtest equity, $10,000 index</figcaption>
+              <div class="equity__plot"></div>
+            </figure>
+            <figure class="equity" data-series="aaplPaper">
+              <figcaption>Paper equity, $10,000 start</figcaption>
+              <div class="equity__plot"></div>
+            </figure>
+          </div>
+          <table class="compare">
+            <thead><tr><td></td><th scope="col">Backtest</th><th scope="col">Paper</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Period</th><td>3 Aug &ndash; 22 Sep</td><td>24 Sep &ndash; 3 Nov</td></tr>
+              <tr><th scope="row">Return</th><td>&minus;6.25%</td><td>+0.79%</td></tr>
+              <tr><th scope="row">Max drawdown</th><td>&minus;9.02%</td><td>&minus;3.18%</td></tr>
+              <tr><th scope="row">Sharpe</th><td>&minus;3.72</td><td>0.89</td></tr>
+              <tr><th scope="row">Win rate</th><td>60.6%</td><td>61.0%</td></tr>
+              <tr><th scope="row">Trades</th><td>1,104</td><td>587</td></tr>
+            </tbody>
+          </table>
+          <p class="note">2026 dates. Neither run charges trading costs. The no-trip-ups and cost figures in the description are my own hypothetical recalculations from the paper trade log, and 1 basis point is an illustrative assumption applied to every fill.</p>
         </div>
       </article>
 
       <article class="project">
         <div class="project__body">
-          <p class="project__index">02 &middot; RSI strategy &middot; META, 5-minute bars</p>
+          <p class="project__index">05 &middot; RSI strategy &middot; META, 5-minute bars</p>
           <h3>RSI-2 Swing Scalp, Variant A</h3>
-          <p>Fewer, bigger trades on extreme readings.</p>
+          <p>Fewer, bigger trades on extreme readings. The backtest looked strong, but the paper run has not matched it so far.</p>
           <ul class="project__rules">
             <li><span>Entry</span> RSI(2) below 10</li>
             <li><span>Exit</span> RSI(2) above 90, or 15:55 flatten rule</li>
@@ -80,23 +181,37 @@
           </div>
         </div>
         <div class="project__data">
-          <figure class="equity" data-series="meta">
-            <figcaption>Backtest equity, session closes, indexed to $10,000</figcaption>
-            <div class="equity__plot"></div>
-          </figure>
-          <dl class="stats">
-            <div><dt>Return</dt><dd>+12.16%</dd></div>
-            <div><dt>Max drawdown</dt><dd>&minus;7.51%</dd></div>
-            <div><dt>Sharpe</dt><dd>2.55</dd></div>
-            <div><dt>Trades</dt><dd>246</dd></div>
-          </dl>
-          <p class="note">Backtest from 9 Jul to 9 Oct 2026, with no commissions or slippage modelled. Live paper results are on Astral.</p>
+          <div class="compare-charts">
+            <figure class="equity" data-series="metaBacktest">
+              <figcaption>Backtest equity, $10,000 index</figcaption>
+              <div class="equity__plot"></div>
+            </figure>
+            <figure class="equity" data-series="metaPaper">
+              <figcaption>Paper equity, $10,000 start</figcaption>
+              <div class="equity__plot"></div>
+            </figure>
+          </div>
+          <table class="compare">
+            <thead><tr><td></td><th scope="col">Backtest</th><th scope="col">Paper</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">Period</th><td>9 Jul &ndash; 9 Oct</td><td>12 Oct &ndash; 3 Nov</td></tr>
+              <tr><th scope="row">Return</th><td>+12.16%</td><td>&minus;9.58%</td></tr>
+              <tr><th scope="row">Max drawdown</th><td>&minus;7.51%</td><td>&minus;11.14%</td></tr>
+              <tr><th scope="row">Sharpe</th><td>2.55</td><td>&minus;5.62</td></tr>
+              <tr><th scope="row">Win rate</th><td>52.4%</td><td>40.5%</td></tr>
+              <tr><th scope="row">Trades</th><td>246</td><td>74</td></tr>
+            </tbody>
+          </table>
+          <p class="note">2026 dates. Neither run charges trading costs.</p>
+          <p class="project__step"><span>Why they don&rsquo;t match: trades left open overnight</span>7 of the 74 paper trades stayed open overnight, even though the strategy is meant to close by 15:55. They account for $539 of the $954 loss, including a single &minus;6.0% gap on 22 Oct.</p>
+          <p class="project__step"><span>Why they don&rsquo;t match: latency on Astral</span>11 of the 74 entries filled more than a minute after the bar close, while the backtest fills at the close. 23 same-day trades also closed past the 0.5% stop, the worst at &minus;1.24%. I also noticed times when trades didn&rsquo;t seem to be logged.</p>
+          <p class="project__step"><span>What I plan to fix in the next strategy</span>Force every position flat before the close and block late entries, then build fill delays and stop slippage into the backtest and check the paper log against the expected signals. Same-day trades alone still lost about $415, so these two issues aren&rsquo;t the whole gap.</p>
         </div>
       </article>
 
       <article class="project project--text">
         <div class="project__body">
-          <p class="project__index">03 &middot; Python &middot; Where it started</p>
+          <p class="project__index">06 &middot; Python &middot; Where it started</p>
           <h3>Stock Price Forecaster</h3>
           <p>A simple early Streamlit app that fits an ARIMA model to daily closes since 2015 and plots a forecast one to four years ahead. Point forecasts only, with no out-of-sample evaluation.</p>
           <div class="project__links">
@@ -143,7 +258,7 @@
   </main>
 
   <footer class="site-footer">
-    <p>Results shown are simulated backtests that exclude trading costs, not real-money returns. Live paper results are on Astral. Nothing here is investment advice.</p>
+    <p>Results shown are simulated backtests and paper trading, not real-money returns, and exclude trading costs unless stated. Live paper results are on Astral. Nothing here is investment advice.</p>
     <p>&copy; 2026 Eric Melparambil</p>
   </footer>
 

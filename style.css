@@ -186,6 +186,17 @@ h2 {
   line-height: 1.2;
 }
 
+.project__step {
+  margin-top: 1.25rem;
+}
+
+.project__step span {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--on-black-soft);
+  font-size: 0.875rem;
+}
+
 .project__rules {
   margin-top: 1.75rem;
   list-style: none;
@@ -267,6 +278,41 @@ h2 {
   line-height: 1.4;
   white-space: nowrap;
   pointer-events: none;
+}
+
+.compare-charts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.compare {
+  width: 100%;
+  margin-top: 1.75rem;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+
+.compare th,
+.compare td {
+  padding: 0.5rem 0.75rem 0.5rem 0;
+  border-top: 1px solid var(--hairline-dark);
+  font-weight: 400;
+  text-align: left;
+}
+
+.compare thead th,
+.compare tbody th {
+  color: var(--on-black-soft);
+}
+
+.compare thead td,
+.compare thead th {
+  border-top: 0;
+}
+
+.compare tbody td {
+  font-family: var(--mono);
 }
 
 .stats {
